@@ -1,12 +1,11 @@
-import Dashboard from "@/app/dashboard/page";
-import { getSession } from "@/lib/auth";
+import { signIn } from "@/app/actions/auth-client";
+import AuthForm from "@/app/components/auth/AuthForm";
 
 export default async function Home() {
-	const session = await getSession();
-
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-			<main>HOMEPAGE</main>
-		</div>
+		<section className="flex flex-col min-h-screen items-center justify-center max-w-lg m-auto">
+			<h1 className="text-2xl uppercase">Home Page</h1>
+			<AuthForm action={signIn} submitText="Sign In" showNameField={false} />
+		</section>
 	);
 }

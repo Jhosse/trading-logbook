@@ -1,11 +1,14 @@
+import { Suspense } from "react";
+import { Spinner } from "@/app/components/ui/spinner";
+
 export default function AuthLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-full flex flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black">
+		<Suspense fallback={<Spinner className="mx-auto size-10" />}>
 			{children}
-		</div>
+		</Suspense>
 	);
 }

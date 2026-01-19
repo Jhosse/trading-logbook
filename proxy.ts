@@ -12,28 +12,9 @@ export async function proxy(request: NextRequest) {
 	const isSignInPage = request.nextUrl.pathname === ROUTES.AUTH.SIGN_IN;
 	const isSignUpPage = request.nextUrl.pathname === ROUTES.AUTH.SIGN_UP;
 
-	if (isSignUpPage) {
-		if (session) {
-			return NextResponse.next();
-		} else {
-			request.nextUrl.pathname = ROUTES.AUTH.SIGN_IN;
-			return NextResponse.redirect(request.nextUrl);
-		}
-	}
-
-	if (isSignInPage && session) {
+	if ((isSignUpPage || isSignInPage || isHomePage) && session) {
 		request.nextUrl.pathname = ROUTES.APP.DASHBOARD;
 		return NextResponse.redirect(request.nextUrl);
-	}
-
-	if (isHomePage) {
-		if (session) {
-			request.nextUrl.pathname = ROUTES.APP.DASHBOARD;
-			return NextResponse.redirect(request.nextUrl);
-		} else {
-			request.nextUrl.pathname = ROUTES.AUTH.SIGN_IN;
-			return NextResponse.redirect(request.nextUrl);
-		}
 	}
 }
 
