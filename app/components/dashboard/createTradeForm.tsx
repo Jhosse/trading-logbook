@@ -43,9 +43,17 @@ export default function CreateTradeForm() {
 		| Partial<Record<keyof z.infer<typeof CreateTradeFormSchema>, string[]>>
 		| undefined
 	>(undefined);
+	const [selectedAsset, setSelectedAsset] = useState<string | undefined>(
+		undefined,
+	);
+
+	const clearState = () => {
+		setErrorState(undefined);
+		setSelectedAsset(undefined);
+	};
 
 	const resetForm = () => {
-		setErrorState(undefined);
+		clearState();
 		formRef.current?.reset();
 	};
 
@@ -59,7 +67,7 @@ export default function CreateTradeForm() {
 			return;
 		}
 
-		setErrorState(undefined);
+		clearState();
 		startTransition(() => {
 			action(formData);
 		});
@@ -67,7 +75,6 @@ export default function CreateTradeForm() {
 
 	useEffect(() => {
 		if (state) {
-			console.log("STATE", state);
 			setErrorState(state?.errors);
 		}
 	}, [state]);
@@ -84,7 +91,11 @@ export default function CreateTradeForm() {
 						<FieldSet className="grid grid-cols-1 md:grid-cols-2 gap-6">
 							<Field>
 								<FieldLabel htmlFor="asset">Asset / Index</FieldLabel>
-								<Select name="asset">
+								<Select
+									name="asset"
+									value={selectedAsset}
+									onValueChange={setSelectedAsset}
+								>
 									<SelectTrigger className="w-full h-14!" id="asset">
 										<SelectValue placeholder="Select an asset" />
 									</SelectTrigger>
@@ -95,7 +106,6 @@ export default function CreateTradeForm() {
 											</SelectItem>
 										))}
 									</SelectContent>
-									{/* <input type="hidden" name="asset" /> */}
 								</Select>
 								<FieldError className="text-red-500">
 									{errorState?.asset}

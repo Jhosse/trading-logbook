@@ -8,5 +8,8 @@ export async function createTrade(
 	state: CreateTradeFormState,
 	formData: FormData,
 ): Promise<CreateTradeFormState> {
+	formData.forEach((value, key) => {
+		console.log(`${key}::: > ${value}`);
+	});
 	return undefined;
 }
