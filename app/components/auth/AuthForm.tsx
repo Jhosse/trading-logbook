@@ -2,7 +2,6 @@
 
 import { useActionState } from "react";
 
-import { signIn, signUp } from "@/app/actions/auth-client";
 import { Button } from "@/app/components/ui/button";
 import {
 	Field,
@@ -28,6 +27,7 @@ export default function AuthForm({
 	showNameField = false,
 }: AuthFormProps) {
 	const [state, formAction, pending] = useActionState(action, undefined);
+
 	return (
 		<>
 			{pending ? (

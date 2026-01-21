@@ -5,6 +5,15 @@ import { nextCookies } from "better-auth/next-js";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
 
+interface SignInCredentials {
+	email: string;
+	password: string;
+}
+
+interface SignUnCredentials extends SignInCredentials {
+	name: string;
+}
+
 export const auth = betterAuth({
 	database: prismaAdapter(prisma, {
 		provider: "postgresql",
@@ -15,11 +24,11 @@ export const auth = betterAuth({
 	plugins: [nextCookies()],
 });
 
-export async function signUpEmail(
-	name: string,
-	email: string,
-	password: string,
-) {
+export async function signUpEmail({
+	name,
+	email,
+	password,
+}: SignUnCredentials) {
 	try {
 		await auth.api.signUpEmail({
 			body: {
@@ -38,7 +47,7 @@ export async function signUpEmail(
 	}
 }
 
-export async function signInEmail(email: string, password: string) {
+export async function signInEmail({ email, password }: SignInCredentials) {
 	try {
 		await auth.api.signInEmail({
 			body: {

@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { signInEmail, signOut, signUpEmail } from "@/lib/auth";
+import { signInEmail, signOut, signUpEmail } from "@/lib/auth/auth";
 import {
 	type AuthFormState,
 	SignInSchema,
@@ -24,11 +24,8 @@ export async function signUp(
 		};
 	}
 
-	const { name, email, password } = validatedFields.data;
-	// const hashedPassword = await bcrypt.hash(password, 10);
-
 	try {
-		const user = await signUpEmail(name, email, password);
+		const user = await signUpEmail(validatedFields.data);
 		// TODO: Handle Redirect
 		return { message: "User created successfully!" };
 	} catch (error) {
@@ -60,10 +57,8 @@ export async function signIn(
 		};
 	}
 
-	const { email, password } = validatedFields.data;
-
 	try {
-		const signInError = await signInEmail(email, password);
+		const signInError = await signInEmail(validatedFields.data);
 
 		if (signInError) {
 			return {
