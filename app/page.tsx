@@ -1,5 +1,5 @@
 import { signIn } from "@/app/actions/auth-client";
-import { AuthForm } from "@/app/components/auth";
+import AuthForm from "@/app/components/auth/authForm";
 
 export default async function Home() {
 	return (
