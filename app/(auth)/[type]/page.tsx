@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { signIn, signUp } from "@/app/actions/auth-client";
-import AuthForm from "@/app/components/auth/authForm";
+import AuthForm from "@/app/components/authTest/authTest";
 import { ROUTES } from "@/lib/constants";
 
 interface AuthPageProps {
