@@ -885,7 +885,7 @@ export const TradeScalarFieldEnum = {
   sl: 'sl',
   tp: 'tp',
   date: 'date',
-  riskReward: 'riskReward',
+  closedAt: 'closedAt',
   notes: 'notes',
   userId: 'userId'
 } as const

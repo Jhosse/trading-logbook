@@ -219,20 +219,18 @@ export default function CreateTradeForm() {
 								</FieldError>
 							</Field>
 							<Field className="gap-3">
-								<FieldLabel htmlFor="riskReward">
-									Risk/Reward Estimate
-								</FieldLabel>
+								<FieldLabel htmlFor="closedAt">Trade Closed</FieldLabel>
 								<div className="relative">
 									<Input
 										className={"h-14"}
-										id="riskReward"
-										name="riskReward"
+										id="closedAt"
+										name="closedAt"
 										type="number"
 										placeholder="0.00"
 									/>
 								</div>
 								<FieldError className="text-red-500">
-									{errorState?.riskReward}
+									{errorState?.closedAt}
 								</FieldError>
 							</Field>
 						</FieldSet>

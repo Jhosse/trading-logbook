@@ -54,7 +54,7 @@ export const CreateTradeFormSchema = z.object({
 	sl: z.coerce.number().positive("Stop loss must be positive"),
 	tp: z.coerce.number().positive("Take profit must be positive"),
 	date: z.string().min(1, "Date and time are required"),
-	riskReward: z.coerce.number().optional(),
+	closedAt: z.coerce.number().positive("Closed price is required"),
 	notes: z.coerce.string().optional(),
 });
 

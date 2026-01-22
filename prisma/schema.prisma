@@ -79,7 +79,7 @@ model Trade {
   sl          Float
   tp          Float
   date        DateTime
-  riskReward  Float?   @map("risk_reward")
+  closedAt    Float
   notes       String?
   
   userId      String

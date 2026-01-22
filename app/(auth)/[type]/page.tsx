@@ -12,8 +12,10 @@ export default async function AuthPage({ params }: AuthPageProps) {
 	const isSignUp = type.toLowerCase().trim() === "signup";
 
 	return (
-		<section className="flex flex-col min-h-screen items-center justify-center max-w-lg m-auto">
-			<h1>{isSignUp ? "Create Account" : "Sign In"} Page</h1>
+		<section className="flex flex-col items-center justify-center w-full max-w-lg m-auto">
+			<h1 className="text-3xl font-bold tracking-tight text-white mb-8">
+				{isSignUp ? "Create Account" : "Sign In"} Page
+			</h1>
 			<AuthForm
 				action={isSignUp ? signUp : signIn}
 				submitText={isSignUp ? "Sign Up" : "Sign In"}

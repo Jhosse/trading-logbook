@@ -11,7 +11,7 @@ export default function DashboardCreate() {
 				</p>
 			</div>
 
-			<div className="min-h-[15rem] border rounded-xl p-6 shadow-2xl">
+			<div className="min-h-[15rem] border rounded-xl p-6 shadow-2xl bg-[#192233]/80">
 				<CreateTradeForm />
 			</div>
 		</div>

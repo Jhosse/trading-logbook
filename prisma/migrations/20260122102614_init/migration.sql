@@ -67,7 +67,7 @@ CREATE TABLE "trades" (
     "sl" DOUBLE PRECISION NOT NULL,
     "tp" DOUBLE PRECISION NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "risk_reward" DOUBLE PRECISION,
+    "closedAt" DOUBLE PRECISION NOT NULL,
     "notes" TEXT,
     "userId" TEXT NOT NULL,
 

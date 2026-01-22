@@ -33,7 +33,10 @@ export default function AuthForm({
 			{pending ? (
 				<Spinner className="mx-auto size-10" />
 			) : (
-				<form action={formAction} className="w-full">
+				<form
+					action={formAction}
+					className="w-full border rounded-xl p-6 shadow-2xl bg-[#192233]/80"
+				>
 					<FieldSet>
 						<FieldGroup>
 							{showNameField && (
