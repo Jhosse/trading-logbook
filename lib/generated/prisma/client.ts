@@ -56,3 +56,8 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Trade
+ * 
+ */
+export type Trade = Prisma.TradeModel

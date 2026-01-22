@@ -1,14 +1,14 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import type { z } from "zod";
+import type { CreateTradeFormSchema } from "@/lib/definitions";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export function validateFormData<T extends z.ZodTypeAny>(
+export function validateFormData(
 	formData: FormData,
-	schema: T,
+	schema: typeof CreateTradeFormSchema,
 ) {
 	const entries: Record<string, FormDataEntryValue> = {};
 

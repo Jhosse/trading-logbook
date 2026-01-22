@@ -10,7 +10,7 @@ interface SignInCredentials {
 	password: string;
 }
 
-interface SignUnCredentials extends SignInCredentials {
+interface SignUpCredentials extends SignInCredentials {
 	name: string;
 }
 
@@ -28,7 +28,7 @@ export async function signUpEmail({
 	name,
 	email,
 	password,
-}: SignUnCredentials) {
+}: SignUpCredentials) {
 	try {
 		await auth.api.signUpEmail({
 			body: {

@@ -56,6 +56,24 @@ CREATE TABLE "verification" (
     CONSTRAINT "verification_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "trades" (
+    "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "asset" TEXT NOT NULL,
+    "trade_type" TEXT NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "lots" DOUBLE PRECISION NOT NULL,
+    "sl" DOUBLE PRECISION NOT NULL,
+    "tp" DOUBLE PRECISION NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL,
+    "risk_reward" DOUBLE PRECISION,
+    "notes" TEXT,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "trades_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
@@ -67,3 +85,6 @@ ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "account" ADD CONSTRAINT "account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "trades" ADD CONSTRAINT "trades_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;

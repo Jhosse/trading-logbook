@@ -54,7 +54,8 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Trade: 'Trade'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -129,6 +130,24 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const TradeScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  asset: 'asset',
+  tradeType: 'tradeType',
+  price: 'price',
+  lots: 'lots',
+  sl: 'sl',
+  tp: 'tp',
+  date: 'date',
+  riskReward: 'riskReward',
+  notes: 'notes',
+  userId: 'userId'
+} as const
+
+export type TradeScalarFieldEnum = (typeof TradeScalarFieldEnum)[keyof typeof TradeScalarFieldEnum]
 
 
 export const SortOrder = {

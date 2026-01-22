@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { signIn, signUp } from "@/app/actions/auth-client";
+import { signIn, signUp } from "@/app/actions/auth";
 import AuthForm from "@/app/components/auth/authForm";
 import { ROUTES } from "@/lib/constants";
 

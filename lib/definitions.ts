@@ -2,6 +2,8 @@ import * as z from "zod";
 import { ASSETS } from "@/lib/constants";
 import { TradeType } from "@/lib/trades/types";
 
+// TODO: Check if SignUpSchema and SignInSchema can be merged into one.
+// Maybe extend SignUpSchema from SignInSchema?
 export const SignUpSchema = z.object({
 	name: z
 		.string()
@@ -46,19 +48,24 @@ export type AuthFormState =
 
 export const CreateTradeFormSchema = z.object({
 	asset: z.enum(ASSETS, "An asset is required"),
-	"trade-type": z.enum(TradeType),
+	tradeType: z.enum(TradeType),
 	price: z.coerce.number().positive("Price must be positive"),
 	lots: z.coerce.number().positive("Lots must be positive"),
 	sl: z.coerce.number().positive("Stop loss must be positive"),
 	tp: z.coerce.number().positive("Take profit must be positive"),
 	date: z.string().min(1, "Date and time are required"),
-	"risk-reward": z.coerce.number().optional(),
+	riskReward: z.coerce.number().optional(),
+	notes: z.coerce.string().optional(),
 });
+
+export type CreateTradeFormData = z.infer<typeof CreateTradeFormSchema>;
 
 export type CreateTradeFormState =
 	| {
 			errors?: {
 				[K in keyof z.infer<typeof CreateTradeFormSchema>]?: string[];
+			} & {
+				db?: string[];
 			};
 			message?: string;
 	  }

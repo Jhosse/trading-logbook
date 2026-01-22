@@ -9,7 +9,7 @@ import {
 	useState,
 } from "react";
 import type { z } from "zod";
-import { createTrade } from "@/app/actions/trades-client";
+import { createTrade } from "@/app/actions/trades";
 import Button from "@/app/components/button";
 import { TradeToggle } from "@/app/components/dashboard/tradeToggle";
 import {
@@ -29,6 +29,7 @@ import {
 	SelectValue,
 } from "@/app/components/ui/select";
 import { Spinner } from "@/app/components/ui/spinner";
+import { Textarea } from "@/app/components/ui/textarea";
 import { ASSETS } from "@/lib/constants";
 import { CreateTradeFormSchema } from "@/lib/definitions";
 import { cn, validateFormData } from "@/lib/utils";
@@ -60,16 +61,16 @@ export default function CreateTradeForm() {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
-		const validation = validateFormData(formData, CreateTradeFormSchema);
+		const validatedFields = validateFormData(formData, CreateTradeFormSchema);
 
-		if (!validation.success) {
-			setErrorState(validation.error?.flatten().fieldErrors);
+		if (!validatedFields.success) {
+			setErrorState(validatedFields.error?.flatten().fieldErrors);
 			return;
 		}
 
 		clearState();
 		startTransition(() => {
-			action(formData);
+			action(validatedFields);
 		});
 	};
 
@@ -218,22 +219,30 @@ export default function CreateTradeForm() {
 								</FieldError>
 							</Field>
 							<Field className="gap-3">
-								<FieldLabel htmlFor="risk-reward">
+								<FieldLabel htmlFor="riskReward">
 									Risk/Reward Estimate
 								</FieldLabel>
 								<div className="relative">
 									<Input
 										className={"h-14"}
-										id="risk-reward"
-										name="risk-reward"
+										id="riskReward"
+										name="riskReward"
 										type="number"
 										placeholder="0.00"
 									/>
 								</div>
 								<FieldError className="text-red-500">
-									{errorState?.["risk-reward"]}
+									{errorState?.riskReward}
 								</FieldError>
 							</Field>
+						</FieldSet>
+						<FieldSet className="grid grid-cols-1 gap-3">
+							<FieldLabel htmlFor="notes">Notes / Strategy</FieldLabel>
+							<Textarea
+								id="notes"
+								className="placeholder:text-muted-foreground placeholder:text-sm text-sm"
+								placeholder="e.g. Trend continuation, breakout confirmed on 4H chart..."
+							/>
 						</FieldSet>
 						<FieldSeparator />
 						<footer className="flex flex-col sm:flex-row items-center justify-end gap-4 px-4">
