@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { logout } from "@/app/actions/auth";
-import { Button } from "@/app/components/ui/button";
+import Button from "@/app/components/button";
 
 import { ROUTES } from "@/lib/constants";
 

@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 
-import { Button } from "@/app/components/ui/button";
+import Button from "@/app/components/button";
 import {
 	Field,
 	FieldDescription,

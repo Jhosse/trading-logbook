@@ -11,6 +11,7 @@ import {
 import type { z } from "zod";
 import { createTrade } from "@/app/actions/trades";
 import Button from "@/app/components/button";
+import CalendarInput from "@/app/components/calendarInput";
 import { TradeToggle } from "@/app/components/dashboard/tradeToggle";
 import {
 	Field,
@@ -207,19 +208,20 @@ export default function CreateTradeForm() {
 							<Field className="gap-3">
 								<FieldLabel htmlFor="date">Execution Date & Time</FieldLabel>
 								<div className="relative">
-									<Input
+									<CalendarInput id="date" name="date" />
+									{/* <Input
 										className="h-14 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:sepia-0 [&::-webkit-calendar-picker-indicator]:brightness-95 [&::-webkit-calendar-picker-indicator]:invert-[63%] [&::-webkit-calendar-picker-indicator]:saturate-0 [&::-webkit-calendar-picker-indicator]:hue-rotate-180 [&::-webkit-calendar-picker-indicator]:contrast-83"
 										id="date"
 										name="date"
 										type="datetime-local"
-									/>
+									/> */}
 								</div>
 								<FieldError className="text-red-500">
 									{errorState?.date}
 								</FieldError>
 							</Field>
 							<Field className="gap-3">
-								<FieldLabel htmlFor="closedAt">Trade Closed</FieldLabel>
+								<FieldLabel htmlFor="closedAt">Price Trade Closed</FieldLabel>
 								<div className="relative">
 									<Input
 										className={"h-14"}
@@ -238,7 +240,7 @@ export default function CreateTradeForm() {
 							<FieldLabel htmlFor="notes">Notes / Strategy</FieldLabel>
 							<Textarea
 								id="notes"
-								className="placeholder:text-muted-foreground placeholder:text-sm text-sm"
+								className="placeholder:text-muted-foreground placeholder:text-sm text-sm h-25"
 								placeholder="e.g. Trend continuation, breakout confirmed on 4H chart..."
 							/>
 						</FieldSet>

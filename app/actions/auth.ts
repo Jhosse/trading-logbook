@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { signInEmail, signOut, signUpEmail } from "@/lib/auth/auth";
+import { ROUTES } from "@/lib/constants";
 import {
 	type AuthFormState,
 	SignInSchema,
@@ -12,6 +13,7 @@ export async function signUp(
 	state: AuthFormState,
 	formData: FormData,
 ): Promise<AuthFormState> {
+	// TODO: MOVE VALIDATION TO THE COMPONENT (SAME AS CREATE A TRADE)
 	const validatedFields = SignUpSchema.safeParse({
 		name: formData.get("name"),
 		email: formData.get("email"),
@@ -26,8 +28,8 @@ export async function signUp(
 
 	try {
 		const user = await signUpEmail(validatedFields.data);
-		// TODO: Handle Redirect
-		return { message: "User created successfully!" };
+
+		redirect(ROUTES.DASHBOARD.OVERVIEW);
 	} catch (error) {
 		// TODO: handle properly the errors (e.g., duplicate email)
 		// Use Prisma error instanceof ie: Prisma.PrismaClientKnownRequestError
@@ -67,6 +69,8 @@ export async function signIn(
 				},
 			};
 		}
+
+		redirect(ROUTES.DASHBOARD.OVERVIEW);
 		// TODO: {else} handle redirect on successful sign in
 	} catch (error) {
 		return {
@@ -75,12 +79,10 @@ export async function signIn(
 			},
 		};
 	}
-
-	return { message: "Sign in action called" };
 }
 
 export async function logout() {
 	await signOut();
 
-	redirect("/");
+	redirect(ROUTES.HOME);
 }
