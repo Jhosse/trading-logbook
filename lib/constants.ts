@@ -17,7 +17,7 @@ export const ROUTES = {
 	},
 } as const;
 
-export const ASSETS = ["Dax", "Dow", "Gold", "Nasdaq"] as const;
+export const ASSETS = ["GER40.cash", "US30.cash", "XAUUSD", "US100.cash"] as const;
 
 export const TRADE_LABELS = {
 	[TradeType.BUY]: "Buy",

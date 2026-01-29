@@ -43,3 +43,6 @@ next-env.d.ts
 # Temporary ignores
 /hooks
 /components/ui
+
+# n8n ignores
+/n8n-compose/.env

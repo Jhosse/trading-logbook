@@ -65,7 +65,8 @@ export default async function RootLayout({
 	}
 
 	const bgGridClass =
-		"bg-[linear-gradient(to_right,rgb(255_255_255_/_0.02)_1px,transparent_1px)] bg-[size:40px_40px]";
+		"bg-[linear-gradient(to_right,rgb(255_255_255_/_0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255_/_0.01)_1px,transparent_1px)] bg-[size:40px_40px]";
+
 	const bgGradientClass =
 		"bg-[radial-gradient(circle_at_center,rgba(19,91,236,0.08)_0%,transparent_70%)]";
 
